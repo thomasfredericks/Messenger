@@ -1,13 +1,17 @@
 import processing.serial.*;
+/*
+Lorsque vous demarrez ce code, tout les ports
+series s'affichent dans la fenetre de deboguage.
+Changer la variable ''portName'' pour qu'elle
+corresponde au nom du port serie qui correspond a
+l'Arduino.
 
-// Lorsque vous demarrez ce code, tout les ports
-// series sont affiche dans la fenetre de deboguage.
-// Changer la chaine suivante pour qu'elle
-// corresponde au nom de votre port serie.
+Sous Linux et OS X le nom du port ressemble a ceci :
+String portName = "/dev/tty.usbmodem24121";
 
-// Sous Linux et OS X le nom du port ressemble a ceci :
-//String portName = "/dev/tty.usbmodem24121";
-// Sous Windows, il ressemble a ceci :
+Sous Windows, il ressemble a ceci :
+String portName = "COM5";
+*/
 String portName = "COM5";
 
 // Declarer une instance de la classe Serial:
