@@ -1,4 +1,4 @@
-Massenger-Arduino
+Messenger
 =================
 
 Simple ASCII messages for Wiring and Arduino
