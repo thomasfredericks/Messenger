@@ -16,6 +16,13 @@ The massage always ends with a carriage return.
 
 */
 
+// A few lines to make sure this sketch is compatible with Arduino and Wiring
+#if !defined(WLED)
+#define WLED 13
+#endif
+
+int debugLed = WLED;
+
 
 // Instantiate a Massenger object, 
 // link it to Serial 
@@ -31,7 +38,7 @@ void setup() {
   Serial.begin(57600); 
     
   // Setup pin 13 as a digital output.
-  pinMode(13,OUTPUT);
+  pinMode(WLED,OUTPUT);
   
   
 }
@@ -55,9 +62,9 @@ void loop() {
 // Process received massages.
 void massageReceived() {
     
-  if ( massenger.checkAddr("d13") ) { // If the received message starts with d13...
+  if ( massenger.checkAddr("led") ) { // If the received message starts with d13...
      int value = massenger.getInt(); // ...read the next element as an int...
-     digitalWrite(13,value); // ...and set the state of pin 13 to the value.
+     digitalWrite(WLED,value); // ...and set the state of pin 13 to the value.
   }
   
 }

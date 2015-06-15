@@ -37,7 +37,9 @@ void loop() {
 void massageReceived() {
   
   if ( massenger.checkAddr("pwm9") ) { // If the massage starts with "pwm9"...
+  
      int value = massenger.getInt(); // ...read the value of the data as an int...
+     
      if ( value == 0 ) {
        digitalWrite(9,LOW); // ...and turn off pin 9.
      } else {                // ... or ...
