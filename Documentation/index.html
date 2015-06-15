@@ -32,11 +32,11 @@ function handleLoad() {
         For example, you can write a program that controls the debug LED on the Arduino with the following messages:
          <ul>
   <li><b>led 1</b> to turn on the LED</li>
-  <li><b>led 0</b> to turn off the LED</li>
-             
-             This program is show in the <i>Basic Example</i> below. The Serial Monitor can be configured to send messages as can Processing, Max, Isadore, Pure Data, etc.
+  <li><b>led 0</b> to turn off the LED</li>   
 </ul> 
-	  
+        This program is show in the <i>Basic Example</i> below. The Serial Monitor can be configured to send messages as can Processing, Max, Isadore, Pure Data, etc.
+<br><br>
+	  In other words, Messenger is a "toolkit" that facilitates the parsing of ASCII messages. Messenger buffers characters until it receives a carriage return (CR). It then considers the message complete and available. The message is split into many elements as defined by a separator. The default separator is the space character, but can be any character other than NULL, LF or CR.
       <h2>Adding Messenger</h2>
 	   <p>Copy the <span class="hilite">Messenger</span> folder to your Arduino or Wiring <span class="hilite">libraries</span> folder.      
       <br>
