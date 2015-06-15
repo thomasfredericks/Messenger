@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf8" http-equiv="content-type">
+    <title>Chrono: Chronometer/stopwatch library</title>
+    <link href="./style/style.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./style/prettify.js"></script>
+	<script type="text/javascript" src="./scripts/toc.js"></script>
+	<script type="text/javascript" src="./scripts/smoothscroll.js"></script>
+    <script>
+
+function handleLoad() {
+ prettyPrint();
+}
+
+</script></head>
+  <body onload="handleLoad();">
+  
+    <div id="container">
+        <img style="margin-left: auto;margin-right: auto;display:block" src="images/messenger.png">
+        <br>
+      <h1>Messenger</h1>
+      <p>Simple ASCII messages for Wiring and Arduino, by <a href="http://t-o-f.info"> Thomas O Fredericks</a></p>
+	  <div id="generated-toc" class="generate_from_h2"></div>
+      <h2>Get It!</h2>
+      <ul>
+        <li><a href="https://github.com/thomasfredericks/Messenger/archive/master.zip"><strong>Download the source</strong></a></li>
+        <li><a href="https://github.com/thomasfredericks/Messenger">Messenger on Github </a></li>
+      </ul>
+        <h2>What is a message?</h2>
+        A message is data that is passed between the Arduino or Wiring and the computer. A message is a series of caracters and numbers that always ends with a carriage return.<br>
+        For example, you can write a program that controls the debug LED on the Arduino with the following messages:
+         <ul>
+  <li><b>led 1</b> to turn on the LED</li>
+  <li><b>led 0</b> to turn off the LED</li>
+             
+             This program is show in the <i>Basic Example</i> below. The Serial Monitor can be configured to send messages as can Processing, Max, Isadore, Pure Data, etc.
+</ul> 
+	  
+      <h2>Adding Messenger</h2>
+	   <p>Copy the <span class="hilite">Messenger</span> folder to your Arduino or Wiring <span class="hilite">libraries</span> folder.      
+      <br>
+      <h2>Basic Example</h2>
+	  <pre class="prettyprint" ><code>// INCLUDE MESSENGER LIBRARY
+// Download : https://github.com/thomasfredericks/Messenger/archive/master.zip
+#include  &lt;Messenger.h&gt;
+
+
+// Instantiate a Messenger instance
+Messenger message = Messenger(); 
+
+
+
+void setup() {
+  // Initiate Serial Communication
+  Serial.begin(57600); 
+  // Attach a function that is called when a message is received
+  message.attach(messageReceived);
+}
+
+void loop() {
+
+  // Feed the serial data to Messenger
+  while ( Serial.available( ) ) 
+    message.process( Serial.read( ) );
+
+}
+
+// Function that is called when a message is received :
+void messageReceived() {
+
+  if ( message.checkString("led") ) {  // If the received message starts with led...
+    int value = message.readInt(); // ...read the next element as an int...
+     digitalWrite(13,value); // ...and set the state of pin 13 to the value.
+  }
+     
+}
+
+</code></pre>
+  <h2>Using the Serial Monitor to send messages</h2>    
+        <h3>Configure the monitor so it ends messages with a carriage return and it matches the serial speed</h3>
+        <img src="images/serial_monitor_a.png">
+        <h3>Send messages by typing the message and then clicking send</h3>
+        <img src="images/serial_monitor_b.png">
+        <img src="images/serial_monitor_c.png">
+<h2>Basic Usage</h2>
+<h3> Include the library </h3>
+
+<pre class="prettyprint" ><code>// INCLUDE MESSENGER LIBRARY
+// Download : https://github.com/thomasfredericks/Messenger/archive/master.zip
+#include  &lt;Messenger.h&gt;
+</code></pre>
+
+<h3> Create an instance and assign a callback function</h3>
+Instantiate Messenger and set a function that is called when a message is received.
+
+<pre class="prettyprint" ><code>Messenger message = Messenger(); 
+message.attach(messageReceived);
+</code></pre>
+
+        
+       <h3> Process received messages  </h3>
+<pre class="prettyprint" ><code>void messageReceived() {
+  if ( message.checkString("led") ) {  // If the received message starts with led...
+    int value = message.readInt(); // ...read the next element as an int...
+     digitalWrite(13,value); // ...and set the state of pin 13 to the value.
+  }
+     
+} </code></pre>      
+<h3> Basic Methods </h3>
+<table>
+            <tr>
+                <td class="first">attach( callback )</td>
+                <td class="second"><span class="type void">void</span></td>
+                <td>Sets the callback function that is called when a message is received </td>
+            </tr>
+			<tr>
+                <td class="first">process( data )</td>
+                <td class="second"><span class="type number">byte</span></td>
+                <td>Processes serial data</td>
+            </tr>
+             <tr>
+                <td class="first">checkString( string )</td>
+                <td class="second"><span class="type boolean">byte</span></td>
+                <td>Returns 1 if the string matches the current word received, 0 otherwise</td>
+            </tr>
+            <tr>
+                <td class="first">readInt( )</td>
+                <td class="second"><span class="type number">int</span></td>
+                <td> Returns a received word as an int</td>
+            </tr>
+        </table>  
+
+<h3>Other Methods</h3>
+<table>
+            <tr>
+                <td class="first">readLong( )</td>
+                <td class="second"><span class="type number">long</span></td>
+                <td>Returns a received word as a long</td>
+            </tr>
+			<tr>
+                <td class="first">readChar( )</td>
+                <td class="second"><span class="type number">char</span></td>
+                <td>Returns a received word as a char</td>
+            </tr>
+             <tr>
+                <td class="first">readDouble( )</td>
+                <td class="second"><span class="type number">double</span></td>
+                <td>Returns a received word as a double</td>
+            </tr>
+			<tr>
+                <td class="first">copyString(char *string, uint8_t size)</td>
+                <td class="second"><span class="type void">void</span></td>
+                <td>Copies the word as a string into a table identified by *string and of a certain maximum size  </td>
+            </tr>
+
+			
+        </table>  
+        <h2>Sending data</h2>
+        To send data, use the built in functions of the Serial classes. I recommed you start all messages with a string, followed by an int. <br><br><b>Do not forget</b> that all messages must end with a carriage return!
+        <br><br>
+        For example, to send the value of an analog pin :
+        <pre class="prettyprint" ><code>Serial.print("A0");
+Serial.print(" "); // Add a space separator
+Serial.print( analogRead(0) ); // Send the pin value
+Serial.println() // End with a carriage return</code></pre>  
+        
+
+<br> 
+    </div>
+	<br>
+	<br>
+  </body>
+</html>
