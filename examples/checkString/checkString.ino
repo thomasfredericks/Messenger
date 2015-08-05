@@ -6,9 +6,9 @@
 #include <Messenger.h>
 
 
-// Instantiate Messenger object with the message function and the default separator 
+// Instantiate Messenger object with the message function and the default separator
 // (the space character)
-Messenger message = Messenger(); 
+Messenger message = Messenger();
 
 
 // Define messenger function
@@ -21,25 +21,24 @@ void messageCompleted() {
       digitalWrite(13,LOW);
     }
   }
-  
-  
+
+
 }
 
 void setup() {
   // Initiate Serial Communication
-  Serial.begin(115200); 
+  Serial.begin(57600); 
   message.attach(messageCompleted);
-  
+
   pinMode(13,OUTPUT);
-  
+
 }
 
 void loop() {
-  
-  // The following line is the most effective way of 
+
+  // The following line is the most effective way of
   // feeding the serial data to Messenger
   while ( Serial.available() ) message.process( Serial.read() );
 
 
 }
-

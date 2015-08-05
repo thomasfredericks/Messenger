@@ -5,16 +5,16 @@
 #include <Messenger.h>
 
 
-// Instantiate Messenger object with the message function and the default separator 
+// Instantiate Messenger object with the message function and the default separator
 // (the space character)
-Messenger message = Messenger(); 
+Messenger message = Messenger();
 
 // Define the max size of the string
 // The size must be big enough to hold the longest string you are expecting
-#define MAXSIZE 30 
+#define MAXSIZE 30
 
 // Create a char array (string) to hold the received string
-char string[MAXSIZE]; 
+char string[MAXSIZE];
 
 
 
@@ -24,24 +24,23 @@ void messageCompleted() {
   while ( message.available() ) {
     message.copyString(string,MAXSIZE);
     Serial.print(string); // Echo the string
-    Serial.println(); // Terminate the message with a carriage return
+    Serial.print('\n'); // Terminate the message with a new line
   }
-  
-  
+
+
 }
 
 void setup() {
   // Initiate Serial Communication
-  Serial.begin(115200); 
+  Serial.begin(57600);
   message.attach(messageCompleted);
 }
 
 void loop() {
-  
-  // The following line is the most effective way of 
+
+  // The following line is the most effective way of
   // feeding the serial data to Messenger
   while ( Serial.available() ) message.process( Serial.read() );
 
 
 }
-

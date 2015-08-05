@@ -19,10 +19,10 @@ Messenger::Messenger(char separator)
 	init(separator);
 }
 
-void Messenger::init(char separator) 
+void Messenger::init(char separator)
 {
 	callback = NULL;
-	token[0] = separator; 
+	token[0] = separator;
 	token[1] = 0;
 	bufferLength = MESSENGERBUFFERSIZE;
     bufferLastIndex = MESSENGERBUFFERSIZE -1;
@@ -81,7 +81,7 @@ double Messenger::readDouble() {
 }
 
 void Messenger::copyString(char *string, uint8_t size) {
-	
+
 	if (next()) {
 		dumped = 1;
 		strlcpy(string,current,size);
@@ -91,7 +91,7 @@ void Messenger::copyString(char *string, uint8_t size) {
 }
 
 uint8_t Messenger::checkString(char *string) {
-	
+
 	if (next()) {
 		if ( strcmp(string,current) == 0 ) {
 			dumped = 1;
@@ -99,7 +99,7 @@ uint8_t Messenger::checkString(char *string) {
 		} else {
 			return 0;
 		}
-	} 
+	}
 }
 
 
@@ -117,17 +117,17 @@ uint8_t Messenger::next() {
     if (dumped) current = strtok_r(temppointer,token,&last);
     if (current != NULL) {
     	dumped = 0;
-    	return 1; 
+    	return 1;
 	}
   }
-  
+
   return 0;
 }
 
 uint8_t Messenger::available() {
-	
+
   return next();
-  
+
 }
 
 
@@ -136,25 +136,24 @@ uint8_t Messenger::process(int serialByte) {
     if (serialByte > 0) {
 
       switch (serialByte) {
-      case 0: 
-      	break;
+      case 0:
       case 10: // LF
-        break;
       case 13: // CR
         buffer[bufferIndex]=0;
-        reset();
-        messageState = 1;
-        current = buffer;
+        if ( bufferIndex > 0 ) {
+          reset();
+          messageState = 1;
+          current = buffer;
+        } else {
+          reset();
+        }
         break;
       default:
           buffer[bufferIndex]=serialByte;
           bufferIndex++;
            if (bufferIndex >= bufferLastIndex) reset();
          }
-      } 
+      }
       if ( messageState == 1 && callback != NULL) (*callback)();
       return messageState;
  }
-
-
-

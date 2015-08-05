@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta content="text/html; charset=utf8" http-equiv="content-type">
-    <title>Chrono: Chronometer/stopwatch library</title>
+    <title>Messenger: Simple ASCII messages for Wiring and Arduino</title>
     <link href="./style/style.css" media="screen" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./style/prettify.js"></script>
 	<script type="text/javascript" src="./scripts/toc.js"></script>
@@ -15,30 +15,37 @@ function handleLoad() {
 
 </script></head>
   <body onload="handleLoad();">
-  
+
     <div id="container">
         <img style="margin-left: auto;margin-right: auto;display:block" src="images/messenger.png">
         <br>
       <h1>Messenger</h1>
       <p>Simple ASCII messages for Wiring and Arduino, by <a href="http://t-o-f.info"> Thomas O Fredericks</a></p>
 	  <div id="generated-toc" class="generate_from_h2"></div>
+    <h2>Description</h2>
+    Messenger is a "toolkit" that facilitates the parsing of ASCII messages.
+<br><br>
+    Messenger buffers characters until it receives a new line character ('\n',10,NL). It then considers the message complete and available.
+    <br>The message is split into many elements as defined by a separator. <br>The default separator is the space character (' '," ",32,SPACE), but can be any character other than null, new line or carriage return.
+
+<br><br>Please note that the default end of message character was a carriage return ('\r',13,CR). Since Arduino 1.6 this has changed to the new line character ('\n',10,NL).
       <h2>Get It!</h2>
       <ul>
         <li><a href="https://github.com/thomasfredericks/Messenger/archive/master.zip"><strong>Download the source</strong></a></li>
         <li><a href="https://github.com/thomasfredericks/Messenger">Messenger on Github </a></li>
       </ul>
         <h2>What is a message?</h2>
-        A message is data that is passed between the Arduino or Wiring and the computer. A message is a series of caracters and numbers that always ends with a carriage return.<br>
+        A message is data that is passed between the Arduino or Wiring and the computer. A message is a series of caracters and numbers that always ends with a new line caracter ('\n').<br>
         For example, you can write a program that controls the debug LED on the Arduino with the following messages:
          <ul>
-  <li><b>led 1</b> to turn on the LED</li>
-  <li><b>led 0</b> to turn off the LED</li>   
-</ul> 
+  <li><b>"led 1"</b> to turn on the LED</li>
+  <li><b>"led 0"</b> to turn off the LED</li>
+</ul>
         This program is show in the <i>Basic Example</i> below. The Serial Monitor can be configured to send messages as can Processing, Max, Isadore, Pure Data, etc.
 <br><br>
-	  In other words, Messenger is a "toolkit" that facilitates the parsing of ASCII messages. Messenger buffers characters until it receives a carriage return (CR). It then considers the message complete and available. The message is split into many elements as defined by a separator. The default separator is the space character, but can be any character other than NULL, LF or CR.
+
       <h2>Adding Messenger</h2>
-	   <p>Copy the <span class="hilite">Messenger</span> folder to your Arduino or Wiring <span class="hilite">libraries</span> folder.      
+	   <p>Copy the <span class="hilite">Messenger</span> folder to your Arduino or Wiring <span class="hilite">libraries</span> folder.
       <br>
       <h2>Basic Example</h2>
 	  <pre class="prettyprint" ><code>// INCLUDE MESSENGER LIBRARY
@@ -47,13 +54,13 @@ function handleLoad() {
 
 
 // Instantiate a Messenger instance
-Messenger message = Messenger(); 
+Messenger message = Messenger();
 
 
 
 void setup() {
   // Initiate Serial Communication
-  Serial.begin(57600); 
+  Serial.begin(57600);
   // Attach a function that is called when a message is received
   message.attach(messageReceived);
 }
@@ -61,7 +68,7 @@ void setup() {
 void loop() {
 
   // Feed the serial data to Messenger
-  while ( Serial.available( ) ) 
+  while ( Serial.available( ) )
     message.process( Serial.read( ) );
 
 }
@@ -73,11 +80,11 @@ void messageReceived() {
     int value = message.readInt(); // ...read the next element as an int...
      digitalWrite(13,value); // ...and set the state of pin 13 to the value.
   }
-     
+
 }
 
 </code></pre>
-  <h2>Using the Serial Monitor to send messages</h2>    
+  <h2>Using the Serial Monitor to send messages</h2>
         <h3>Configure the monitor so it ends messages with a carriage return and it matches the serial speed</h3>
         <img src="images/serial_monitor_a.png">
         <h3>Send messages by typing the message and then clicking send</h3>
@@ -94,19 +101,19 @@ void messageReceived() {
 <h3> Create an instance and assign a callback function</h3>
 Instantiate Messenger and set a function that is called when a message is received.
 
-<pre class="prettyprint" ><code>Messenger message = Messenger(); 
+<pre class="prettyprint" ><code>Messenger message = Messenger();
 message.attach(messageReceived);
 </code></pre>
 
-        
+
        <h3> Process received messages  </h3>
 <pre class="prettyprint" ><code>void messageReceived() {
   if ( message.checkString("led") ) {  // If the received message starts with led...
     int value = message.readInt(); // ...read the next element as an int...
      digitalWrite(13,value); // ...and set the state of pin 13 to the value.
   }
-     
-} </code></pre>      
+
+} </code></pre>
 <h3> Basic Methods </h3>
 <table>
             <tr>
@@ -129,7 +136,7 @@ message.attach(messageReceived);
                 <td class="second"><span class="type number">int</span></td>
                 <td> Returns a received word as an int</td>
             </tr>
-        </table>  
+        </table>
 
 <h3>Other Methods</h3>
 <table>
@@ -154,19 +161,19 @@ message.attach(messageReceived);
                 <td>Copies the word as a string into a table identified by *string and of a certain maximum size  </td>
             </tr>
 
-			
-        </table>  
+
+        </table>
         <h2>Sending data</h2>
-        To send data, use the built in functions of the Serial classes. I recommed you start all messages with a string, followed by an int. <br><br><b>Do not forget</b> that all messages must end with a carriage return!
+        To send data, use the built in functions of the Serial classes. I recommed you start all messages with a string, followed by an int. <br><br><b>Do not forget</b> that all messages must end with a new line character ('\n')!
         <br><br>
         For example, to send the value of an analog pin :
         <pre class="prettyprint" ><code>Serial.print("A0");
 Serial.print(" "); // Add a space separator
 Serial.print( analogRead(0) ); // Send the pin value
-Serial.println() // End with a carriage return</code></pre>  
-        
+Serial.print('\n') // End with a new line character</code></pre>
 
-<br> 
+
+<br>
     </div>
 	<br>
 	<br>

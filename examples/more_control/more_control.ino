@@ -31,7 +31,7 @@ void messageCompleted() {
         Serial.print(analogRead(i),DEC); // Send the pin value
         Serial.print(" "); // Add a space separator
       }
-      Serial.println(); // Terminate message
+      Serial.print('\n'); // Terminate message
     } 
     else if ( message.checkString("d") ) {
       Serial.print("d ");
@@ -39,7 +39,7 @@ void messageCompleted() {
         Serial.print(digitalRead(i),DEC); // Send the pin value
         Serial.print(" "); // Add a space separator
       }
-      Serial.println(); // Terminate message
+      Serial.print('\n'); // Terminate message
     }
   } 
   else if ( message.checkString("w") ) { // Write pin (analog or digital)
@@ -75,6 +75,5 @@ void loop() {
 
 
 }
-
 
 

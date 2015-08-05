@@ -1,0 +1,10 @@
+Circuit : 
+Connect an analog sensor to analog pin 0.
+
+Board :
+Upload the "debugLed_A0" example to your board.
+
+TouchDesigner :
+Open "messenger_arduino.toe" in TouchDesigner. Configure the matching comport. Activate the Serial DAT.
+The button should turn on and off the board's debug LED.
+You should receive the values of analog pin 0.

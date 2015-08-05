@@ -1,0 +1,10 @@
+Circuit : 
+Connect an analog sensor to analog pin 0.
+
+Board :
+Upload the "debugLed_A0" example to your board.
+
+Max6 and Max7 :
+Open "messenger_max.maxpat". Configure the matching serial port. Activate it.
+The toggle should turn on and off the board's debug LED.
+You should receive the values of analog pin 0.
