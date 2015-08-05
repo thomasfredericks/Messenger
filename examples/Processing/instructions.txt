@@ -1,0 +1,11 @@
+Circuit : 
+Connect an analog sensor to analog pin 0.
+
+Board :
+Upload the "debugLed_A0" example to your board.
+
+Processing :
+Open "messenger_processing". Configure the serial port so it matches your board.
+Run the sketch.
+Clicking in the windows should turn on and off the board's debug LED.
+You should receive the values of analog pin 0.
