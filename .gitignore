@@ -3,6 +3,7 @@
 #################
 
 local/
+archives/
 
 *.pydevproject
 .project
