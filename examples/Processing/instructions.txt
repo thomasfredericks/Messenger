@@ -7,5 +7,5 @@ Upload the "debugLed_A0" example to your board.
 Processing :
 Open "messenger_processing". Configure the serial port so it matches your board.
 Run the sketch.
-Clicking in the windows should turn on and off the board's debug LED.
-You should receive the values of analog pin 0.
+Clicking in the window should toggle the value of debugLed and turn on and off the board's debug LED.
+You should receive the values of analog pin 0. The values should be displayed as text and labeled "A0".
