@@ -4,7 +4,7 @@
   followed by a 0 or 1.
 
   Thomas Ouellet Fredericks 
-  2015/06/15
+  2015/08/14
 
  */
 
@@ -16,6 +16,10 @@
 Messenger message = Messenger(); 
 
 void setup() {
+  
+  // Set pin 13 to OUTPUT mode
+   pinMode(13, OUTPUT);
+  
   // Initiate Serial Communication
   Serial.begin(57600); 
   // Attach a function that is called when a message is received
@@ -39,4 +43,3 @@ void messageReceived() {
   }
      
 }
-

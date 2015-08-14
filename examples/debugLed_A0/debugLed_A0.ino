@@ -17,6 +17,10 @@ Messenger messenger;
 
 
 void setup() {
+
+   // Set pin 13 to OUTPUT mode :
+   pinMode(13,OUTPUT);
+
   // start serial port at 57600 bps:
   Serial.begin(57600);
   
