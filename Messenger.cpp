@@ -26,6 +26,7 @@ void Messenger::init(char separator)
 	token[1] = 0;
 	bufferLength = MESSENGERBUFFERSIZE;
     bufferLastIndex = MESSENGERBUFFERSIZE -1;
+	buffer[bufferLastIndex] =0;
     reset();
 }
 
@@ -60,6 +61,12 @@ long Messenger::readLong() {
 	}
 	return 0;
 
+}
+
+char* Messenger::received() {
+
+  	return current;
+ 
 }
 
 char Messenger::readChar() {

@@ -28,6 +28,7 @@ public:
   long readLong(); // Added based on a suggestion by G. Paolo Sani
   char readChar();
   double readDouble(); // Added based on a suggestion by Lorenzo C.
+  char*  received();
   void copyString(char *string, uint8_t size);
   uint8_t checkString(char *string);
   uint8_t process(int serialByte);
