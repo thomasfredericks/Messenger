@@ -141,9 +141,9 @@ while ( Serial.available( ) ) message.process( Serial.read( ) );</code></pre>
                 <td> Returns a received word as an int</td>
             </tr>
 			<tr>
-                <td class="first">received( )</td>
+                <td class="first">peek( )</td>
                 <td class="second"><span class="type string">char*</span></td>
-                <td> Simplifies debuging by allowing to print the received message like so : Serial.println(messenger.received())</td>
+                <td> Allows to peek at the next word in the buffer. Simplifies debuging by allowing to print the received message like so : Serial.println(messenger.peek())</td>
             </tr>
         </table>
 

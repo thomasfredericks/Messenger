@@ -42,6 +42,20 @@ void Messenger::reset() {
         dumped = 1;
 }
 
+
+char* Messenger::peek() {
+
+  	return current;
+ 
+}
+
+//TODO : USE A VARIABLE FOR THIS
+uint8_t Messenger::available() {
+
+  return next();
+
+}
+
 int Messenger::readInt() {
 
     if (next()) {
@@ -63,11 +77,7 @@ long Messenger::readLong() {
 
 }
 
-char* Messenger::received() {
 
-  	return current;
- 
-}
 
 char Messenger::readChar() {
 
@@ -131,11 +141,7 @@ uint8_t Messenger::next() {
   return 0;
 }
 
-uint8_t Messenger::available() {
 
-  return next();
-
-}
 
 
 uint8_t Messenger::process(int serialByte) {

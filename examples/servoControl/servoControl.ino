@@ -31,7 +31,7 @@ void messageReceived() {
                 Serial.println("Ok");
         } else {
              Serial.print("What? ");
-             Serial.println(message.received());
+             Serial.println(message.peek());
           
         }
 
