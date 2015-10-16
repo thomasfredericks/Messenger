@@ -105,6 +105,10 @@ Instantiate Messenger and set a function that is called when a message is receiv
 message.attach(messageReceived);
 </code></pre>
 
+<h3> Feed the serial data to Messenger</h3>
+<pre class="prettyprint" ><code>// Put inside loop()!!!
+// Feed the serial data to Messenger
+while ( Serial.available( ) ) message.process( Serial.read( ) );</code></pre>
 
        <h3> Process received messages  </h3>
 <pre class="prettyprint" ><code>void messageReceived() {
