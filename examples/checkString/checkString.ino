@@ -14,20 +14,20 @@ Messenger message = Messenger();
 // Define messenger function
 void messageCompleted() {
   // This loop will echo each element of the message separately
-  while ( message.available() ) {
+
     if ( message.checkString("on") ) {
       digitalWrite(13,HIGH);
     } else if ( message.checkString("off") ) {
       digitalWrite(13,LOW);
     }
-  }
+  
 
 
 }
 
 void setup() {
   // Initiate Serial Communication
-  Serial.begin(57600); 
+  Serial.begin(57600);
   message.attach(messageCompleted);
 
   pinMode(13,OUTPUT);
