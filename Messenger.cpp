@@ -107,7 +107,7 @@ void Messenger::copyString(char *string, uint8_t size) {
 	}
 }
 
-uint8_t Messenger::checkString(char *string) {
+uint8_t Messenger::checkString(const char *string) {
 
 	if (next()) {
 		if ( strcmp(string,current) == 0 ) {

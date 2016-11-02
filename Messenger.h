@@ -30,7 +30,7 @@ public:
   double readDouble(); // Added based on a suggestion by Lorenzo C.
   char*  peek();
   void copyString(char *string, uint8_t size);
-  uint8_t checkString(char *string);
+  uint8_t checkString(const char *string);
   uint8_t process(int serialByte);
   uint8_t available();
   void attach(messengerCallbackFunction newFunction);
